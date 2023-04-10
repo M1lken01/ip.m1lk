@@ -1,0 +1,47 @@
+{
+    "background": {
+        "scripts": [
+            "src/js/background.js"
+        ]
+    },
+    "browser_action": {
+        "default_title": "ip.m1lk",
+        "default_popup": "src/html/popup.html",
+        "default_icon": {
+            "128": "src/images/favicon.png"
+        }
+    },
+    "description": "hahahaha",
+    "icons": {
+        "128": "src/images/favicon.png"
+    },
+    "manifest_version": 2,
+    "name": "ip.m1lk",
+    "short_name": "ip.m1lk",
+    "options_ui": {
+        "chrome_style": false,
+        "page": "src/html/options.html"
+    },
+    "content_scripts": [{
+        "matches": ["https://school.moodledemo.net/*", "http://moodle.bolyaitechnikum.hu/", "file:///E:/Programing/Personal/personal-extensions/x.html"],
+        "js": ["src/js/app.js"],
+        "css": ["src/css/style.moodle.css"]
+    }],
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "ip@m1lk"
+        }
+    },
+    "permissions": [
+        "tabs",
+        "contextMenus",
+        "clipboardWrite",
+        "cookies",
+        "storage",
+        "sessions",
+        "webRequest",
+        "webRequestBlocking",
+        "<all_urls>"
+    ],
+    "version": "6.9"
+}

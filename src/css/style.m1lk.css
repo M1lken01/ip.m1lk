@@ -1,0 +1,82 @@
+*:where(:not(iframe, canvas, img, svg, video):not(svg *)) {
+    all: unset;
+    display: revert;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+img {
+    max-width: 100%;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+textarea {
+    white-space: revert;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    width: 560px;
+}
+
+* {
+    font-family: monospace;
+}
+
+input,
+button,
+p,
+.row>div {
+    border: 1px solid #000;
+    border-radius: 2px;
+    margin: 2px;
+    padding: 4px;
+    width: 100%;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+#answer {
+    min-height: 80px;
+}
+
+#table-m1lk {
+    color: #000;
+}
+
+#table-m1lk td {
+    border: 1px solid #000;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+}
+
+.highlight-custom {
+    background-color: #FF0;
+}
+
+.hidden {
+    display: none;
+}
