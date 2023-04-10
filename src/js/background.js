@@ -1,8 +1,8 @@
 const storageItems = ['searchAddress', 'searchMask', 'answer', 'subnetSplit'];
-const storageItemDefaults = ['192.168.0.1', '24', '', true];
+const storageItemDefaults = ['192.168.0.1', '24', '{}', true];
 const splitChar = '.';
 
-browser.runtime.onMessage.addListener(function (req, sender, sendResponse) {
+browser.runtime.onMessage.addListener(function(req, sender, sendResponse) {
     switch (req.type) {
         case 'getIp':
             const ans = calcIp(req.address, Number(req.mask));
@@ -103,7 +103,7 @@ function checkPrivate(ip) {
 
 function init() {
     console.log(calcIp('192.168.0.1', 13)); //debug
-    reset();
+    reset(true);
 }
 
 init();
