@@ -1,5 +1,5 @@
-const storageItems = ['searchAddress', 'searchMask', 'answer', 'subnetSplit'];
-const storageItemDefaults = ['192.168.0.1', '24', '{}', true];
+const storageItems = ['searchAddress', 'searchMask', 'answer'];
+const storageItemDefaults = ['192.168.0.1', '24', '{}'];
 const splitChar = '.';
 
 browser.runtime.onMessage.addListener(function (req, sender, sendResponse) {
@@ -66,10 +66,7 @@ function calcIp(address, maskBits) {
     for (const key in ans) {
         if (Object.hasOwnProperty.call(ans, key)) {
             if (typeof ans[key] === 'string' && !ans[key].includes(' ')) {
-                let bin = ans[key].split(splitChar).map(octet => parseInt(octet).toString(2).padStart(8, '0')).join(splitChar);
-                if (localStorage.getItem('subnetSplit') == 'true')
-                    bin = bin.slice(0, maskBits + 2) + ' ' + bin.slice(maskBits + 2);
-                ans[key + '_bin'] = bin;
+                ans[key + '_bin'] = ans[key].split(splitChar).map(octet => parseInt(octet).toString(2).padStart(8, '0')).join(splitChar);
             }
         }
     }
