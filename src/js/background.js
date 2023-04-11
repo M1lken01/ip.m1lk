@@ -2,7 +2,7 @@ const storageItems = ['searchAddress', 'searchMask', 'answer', 'subnetSplit'];
 const storageItemDefaults = ['192.168.0.1', '24', '{}', true];
 const splitChar = '.';
 
-browser.runtime.onMessage.addListener(function(req, sender, sendResponse) {
+browser.runtime.onMessage.addListener(function (req, sender, sendResponse) {
     switch (req.type) {
         case 'getIp':
             const ans = calcIp(req.address, Number(req.mask));
@@ -47,16 +47,16 @@ function answerParser(answer) {
 function calcIp(address, maskBits) {
     const ip = address.split(splitChar).map(Number);
     const subnetMask = getSubnetMask(maskBits);
-    const network = ip.map((octet, i) => octet & subnetMask[i])
+    const network = ip.map((octet, i) => octet & subnetMask[i]);
     const broadcast = ip.map((octet, i) => octet | subnetMask.map(mask => 255 - mask)[i]);
     const hostRange = getHostRange(network, broadcast);
     let ans = {
         address,
         netmask: subnetMask.join(splitChar),
         network: network.join(splitChar),
+        broadcast: broadcast.join(splitChar), // szorasi cim
         host_min: hostRange[0].join(splitChar),
         host_max: hostRange[1].join(splitChar),
-        broadcast: broadcast.join(splitChar), // szorasi cim
         wildcard: subnetMask.map(mask => 255 - mask).join(splitChar),
         short: address + ' /' + maskBits,
         private: checkPrivate(ip),
@@ -102,7 +102,7 @@ function checkPrivate(ip) {
 }
 
 function init() {
-    console.log(calcIp('192.168.0.1', 13)); //debug
+    console.log(calcIp('192.168.0.1', 24)); //debug
     reset(true);
 }
 
